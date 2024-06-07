@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../hspBackend"
+		},
+		{
+			"path": "../../../../../buyMedicine"
+		}
+	],
+	"settings": {}
+}
