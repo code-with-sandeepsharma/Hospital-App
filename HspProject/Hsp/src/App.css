@@ -46,3 +46,44 @@
   left: 0;
   z-index: 999; /* Set a higher z-index to ensure it appears on top */
 }
+
+/* Custom CSS for slider height */
+.slider-height {
+  height: 70vh; /* Full viewport height */
+}
+
+.slider-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-item img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .slider-height {
+    height: 70vh; /* Adjust this value for medium screens */
+  }
+  .text-4xl {
+    font-size: 2xl; /* Adjust heading size for medium screens */
+  }
+  .text-lg {
+    font-size: base; /* Adjust text size for medium screens */
+  }
+}
+
+@media (max-width: 640px) {
+  .slider-height {
+    height: 50vh; /* Adjust this value for small screens */
+  }
+  .text-4xl {
+    font-size: xl; /* Adjust heading size for small screens */
+  }
+  .text-lg {
+    font-size: sm; /* Adjust text size for small screens */
+  }
+}

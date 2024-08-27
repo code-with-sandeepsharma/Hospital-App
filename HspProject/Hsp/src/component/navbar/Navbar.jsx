@@ -5,12 +5,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebaseConfig/FireBase.jsx";
 import { signOut } from "firebase/auth";
+import { Radar } from "lucide-react";
 
 const menuUpperItems = [
   { name: "Find a Doctor", href: "/consultdoctors" },
   { name: "Blogs", href: "#" },
   { name: "My Reports", href: "#" },
-  { name: "Investors", href: "#" },
+  { name: "Investors", href: "/adddoctor" },
   { name: "Research", href: "#" },
   { name: "CSR", href: "#" },
   { name: "Contact Us", href: "#" },
@@ -19,18 +20,23 @@ const menuUpperItems = [
 const menuItems = [
   {
     name: "Patient Care",
-    href: "#",
+    href: "/patientcare",
     subitems: [
       {
         name: "Find a Doctor",
         href: "/consultdoctors",
         subsubitems: [
-          { name: "Doctor A", href: "#" },
-          { name: "Doctor B", href: "#" },
-          { name: "Doctor C", href: "#" },
+          { name: "Heart Care", href: "/orthopedics" },
+          { name: "Orthopedics", href: "/orthopedics" },
+          { name: "Pulmonology", href: "/pulmonology" },
+          { name: "Cancer", href: "/cancer" },
+          { name: "Urology", href: "/urology" },
+          { name: "Radio Oncology", href: "/radiooncology" },
         ],
       },
-      { name: "Blogs", href: "#" },
+      { name: "Blogs", href: "/whoweare" },
+      { name: "My Reports", href: "#" },
+      { name: "Blogs", href: "specialist" },
       { name: "My Reports", href: "#" },
     ],
   },
@@ -38,9 +44,9 @@ const menuItems = [
     name: "Center Of Excellence",
     href: "/specialist",
     subitems: [
-      { name: "Department A", href: "#" },
-      { name: "Department B", href: "#" },
-      { name: "Department C", href: "#" },
+      { name: "Orthopedics", href: "/orthopedics" },
+      { name: "Gastroenterology", href: "gastroenterology" },
+      { name: "Rheumatology", href: "/rheumatology" },
     ],
   },
   {
@@ -49,47 +55,57 @@ const menuItems = [
     subitems: [
       {
         name: "Cardiology",
-        href: "#",
+        href: "/cardiology",
         subsubitems: [
-          { name: "Treatment A", href: "#" },
-          { name: "Treatment B", href: "#" },
+          { name: "ByePass Surgery", href: "#" },
+          { name: "Heart Value Replacement", href: "#" },
+          { name: "ASD Surgery", href: "#" },
+          { name: "Endoscopic", href: "#" },
         ],
       },
       {
         name: "Neurology",
-        href: "#",
+        href: "https://www.healthline.com/find-care/articles/neurologists/neurologist#procedures",
         subsubitems: [
-          { name: "Treatment A", href: "#" },
-          { name: "Treatment B", href: "#" },
+          { name: "Head Injuries", href: "#" },
+          { name: "Chronic headaches", href: "#" },
+          { name: "Migranine", href: "#" },
+          { name: "Multiple sclerosis", href: "#" },
         ],
       },
     ],
   },
   {
     name: "Procedures",
-    href: "#",
+    href: "https://www.linkedin.com/pulse/10-occupational-health-safety-procedures-you-need-know-hsewatch/",
     subitems: [
-      { name: "Procedure A", href: "#" },
-      { name: "Procedure B", href: "#" },
-      { name: "Procedure C", href: "#" },
+      { name: "Lumbar Puncture", href: "#" },
+      { name: "Tensilon test", href: "#" },
+      { name: "Electromyography(EMG)", href: "#" },
     ],
   },
   {
     name: "International Patients",
-    href: "#",
+    href: "https://www.linkedin.com/pulse/10-occupational-health-safety-procedures-you-need-know-hsewatch/",
     subitems: [
       { name: "Service A", href: "#" },
       { name: "Service B", href: "#" },
       { name: "Service C", href: "#" },
+      { name: "Service D", href: "#" },
+      { name: "Service E", href: "#" },
+      { name: "Service F", href: "#" },
     ],
   },
   {
     name: "Academic & Research",
-    href: "#",
+    href: "https://www.linkedin.com/pulse/10-occupational-health-safety-procedures-you-need-know-hsewatch/",
     subitems: [
       { name: "Research A", href: "#" },
       { name: "Research B", href: "#" },
       { name: "Research C", href: "#" },
+      { name: "Research D", href: "#" },
+      { name: "Research E", href: "#" },
+      { name: "Research F", href: "#" },
     ],
   },
 ];
@@ -154,7 +170,7 @@ export default function Navbar() {
         progress: undefined,
         theme: "colored",
       });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toast.error("Logout Failed", {
         position: "top-right",
@@ -188,7 +204,6 @@ export default function Navbar() {
                 <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
                   Option 2
                 </li>
-               
               </ul>
             </div>
           )}
@@ -212,7 +227,8 @@ export default function Navbar() {
             onClick={handleLogoutClick}
             className="text-gray-50 p-2 border-stone-100 rounded-full animate-buttonBgColorChange hover:bg-red-400 hover:cursor-pointer ml-6"
           >
-            Logout({user.email})
+            Logout({user.firstName}
+             ({user.role}))
           </button>
         ) : (
           <button
@@ -225,35 +241,44 @@ export default function Navbar() {
       </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
-          <span>
+          <span className=" ">
             <svg
-              width="30"
-              height="30"
-              viewBox="0 0 50 56"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#171616"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-radar"
             >
-              <path
-                d="M23.2732 0.2528C20.8078 1.18964 2.12023 12.2346 1.08477 13.3686C0 14.552 0 14.7493 0 27.7665C0 39.6496 0.0986153 41.1289 0.83823 42.0164C2.12023 43.5449 23.2239 55.4774 24.6538 55.5267C25.9358 55.576 46.1027 44.3832 48.2229 42.4602C49.3077 41.474 49.3077 41.3261 49.3077 27.8158C49.3077 14.3055 49.3077 14.1576 48.2229 13.1714C46.6451 11.7415 27.1192 0.450027 25.64 0.104874C24.9497 -0.0923538 23.9142 0.00625992 23.2732 0.2528ZM20.2161 21.8989C20.2161 22.4906 18.9835 23.8219 17.0111 25.3997C15.2361 26.7803 13.8061 27.9637 13.8061 28.0623C13.8061 28.1116 15.2361 29.3451 16.9634 30.7239C18.6907 32.1026 20.1699 33.3872 20.2671 33.6831C20.7072 34.4723 19.5731 35.5569 18.6871 34.6708C18.1439 34.1276 8.67815 28.5061 8.67815 28.5061C8.333 27.6186 9.36846 26.5338 14.3485 22.885C17.6521 20.4196 18.4904 20.0252 19.2793 20.4196C19.7724 20.7155 20.2161 21.3565 20.2161 21.8989ZM25.6893 27.6679C23.4211 34.9161 23.0267 35.7543 22.1391 34.8668C21.7447 34.4723 22.1391 32.6479 23.6677 27.9637C26.2317 20.321 26.5275 19.6307 27.2671 20.3703C27.6123 20.7155 27.1685 22.7864 25.6893 27.6679ZM36.0932 23.2302C40.6788 26.2379 41.3198 27.0269 40.3337 28.1609C39.1503 29.5909 31.6555 35.2119 30.9159 35.2119C29.9298 35.2119 28.9436 33.8806 29.2394 33.0424C29.3874 32.6479 30.9652 31.218 32.7403 29.8867L35.9946 27.4706L32.5431 25.1532C30.6201 23.9205 29.0915 22.7371 29.0915 22.5892C29.0915 21.7509 30.2256 20.4196 30.9159 20.4196C31.3597 20.4196 33.6771 21.7016 36.0932 23.2302Z"
-                fill="black"
-              />
+              <path d="M19.07 4.93A10 10 0 0 0 6.99 3.34" />
+              <path d="M4 6h.01" />
+              <path d="M2.29 9.62A10 10 0 1 0 21.31 8.35" />
+              <path d="M16.24 7.76A6 6 0 1 0 8.23 16.67" />
+              <path d="M12 18h.01" />
+              <path d="M17.99 11.66A6 6 0 0 1 15.77 16.67" />
+              <circle cx="12" cy="12" r="2" />
+              <path d="m13.41 10.59 5.66-5.66" />
             </svg>
           </span>
-          <span className="font-bold">JhaJee</span>
+          <span className="font-bold text-black"></span>
         </div>
 
         <div className="hidden lg:block relative">
-          <ul className="ml-12 inline-flex space-x-6">
+          <ul className="ml-12 inline-flex space-x-6 ">
             {menuItems.map((item, index) => (
               <li
                 key={item.name}
                 onMouseEnter={() => setOpenDropdownIndex(index)}
                 onMouseLeave={() => setOpenDropdownIndex(null)}
-                className="relative"
+                className="relative "
               >
                 <a
                   href={item.href}
-                  className="inline-flex items-center text-sm font-semibold text-white hover:text-yellow-300"
+                  className="inline-flex items-center text-sm font-semibold text-white hover:text-yellow-300 "
                 >
                   {item.name}
                   {item.subitems && <ChevronDown className="ml-2 h-4 w-4" />}
@@ -266,7 +291,7 @@ export default function Navbar() {
                           key={subitem.name}
                           onMouseEnter={() => setSubmenuIndex(subIndex)}
                           onMouseLeave={() => setSubmenuIndex(null)}
-                          className="relative"
+                          className="relative border-b p-1 border-black "
                         >
                           <a
                             href={subitem.href}
@@ -278,12 +303,12 @@ export default function Navbar() {
                             )}
                           </a>
                           {subitem.subsubitems && submenuIndex === subIndex && (
-                            <div className="absolute text-sm top-0 left-full mt-0 w-32 bg-white text-black rounded shadow-lg z-20">
+                            <div className="absolute text-sm top-0 left-full ml-1 mt-0.5 w-36 bg-white text-black rounded shadow-lg z-20">
                               <ul>
                                 {subitem.subsubitems.map((subsubitem) => (
                                   <li
                                     key={subsubitem.name}
-                                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer border-b border-black "
                                   >
                                     <a href={subsubitem.href}>
                                       {subsubitem.name}

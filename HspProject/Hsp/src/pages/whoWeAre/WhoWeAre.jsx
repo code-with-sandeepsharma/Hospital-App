@@ -48,7 +48,7 @@ function WhoWeAre() {
           Why Choose SanShri Healthcare
         </h1>
         <p className="text-lg text-slate-100">
-          Established by Sangam Jha, Sandeep Sharma, and Shrivastva Vidyanshu in
+          Established by Sangam Kumar Jha, Ajeet Kumar Rajpoot a in
           2024, SanShri Healthcare has a robust presence across the healthcare
           ecosystem. From routine wellness & preventive health care to
           innovative life-saving treatments and diagnostic services, SanShri

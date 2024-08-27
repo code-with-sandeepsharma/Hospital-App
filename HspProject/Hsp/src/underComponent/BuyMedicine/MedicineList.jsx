@@ -4,7 +4,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-const App = () => {
+const MedicineList = () => {
   const [products, setProducts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
@@ -17,7 +17,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("http://localhost:4001/api/v1/products")
       .then((response) => {
         setProducts(response.data);
       })
@@ -49,7 +49,7 @@ const App = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/products", formData)
+      .post("http://localhost:4001/api/v1/medicines", formData)
       .then((response) => {
         setProducts([...products, response.data]);
         setModalIsOpen(false);
@@ -188,4 +188,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default MedicineList;

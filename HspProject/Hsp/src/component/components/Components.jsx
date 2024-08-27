@@ -1,4 +1,5 @@
 import React from "react";
+import Dashboard from "../../underComponent/Dashboard/Dashboard";
 
 function Components() {
   const components = [
@@ -29,7 +30,7 @@ function Components() {
     },
     {
       name: "View Health Record",
-      href: "",
+      href: "/healthRecords",
       imgSrc: "https://cdn.apollohospitals.com/delhistorage/2023/09/finddoctor_icon.webp",
     },
     {

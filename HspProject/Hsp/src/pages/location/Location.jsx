@@ -20,9 +20,9 @@ const menuItems = [
 
 const locations = [
   {
-    title: "Bengaluru office",
+    title: "Delhi office",
     timings: "Mon-Sat 9am to 5pm.",
-    address: "100, Electronic City Phase-1, Bengaluru, Karnataka 560100 IN",
+    address: "100, Electronic City Phase-1, Delhi, 110011 IN",
   },
   {
     title: "Head office",
@@ -30,10 +30,10 @@ const locations = [
     address: "12th Main Rd, Indiranagar, Bengaluru, Karnataka 560008 IN",
   },
   {
-    title: "Karnataka office",
+    title: "Greater Noida office",
     timings: "Mon-Sat 9am to 5pm.",
     address:
-      "42, Residency Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560025 IN",
+      "42, Residency Rd, Shanthala Nagar, Ashok Nagar, Surajpur,Uttat-Pradesh 201306 IN",
   },
 ];
 
